@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div>
+        <button data-id="0" data-name="Botão 1">Botão 1</button>
+        <button data-id="1" data-name="Botão 2">Botão 2</button>
+        <button data-id="2" data-name="Botão 3">Botão 3</button>
+        <button data-id="3" data-name="Botão 4">Botão 4</button>
+    </div>
+
+    <h2 id="h2">O botão mais clicado foi o botão X</h2>
+    <h3 id="h3">Ele teve X cliques</h3>
+
+    <script>
+
+    var h2 = document.getElementById('h2')
+    var h3 = document.getElementById('h3')
+
+    var botoes = document.getElementsByTagName('button')
+
+    var quantidadeDeCliques = []
+    var maisClicado = 0
+
+    for (i = 0; i < botoes.length; i++) {
+        quantidadeDeCliques[i] = 0
+
+        botoes[i].addEventListener("click", function() {
+            quantidadeDeCliques[this.dataset.id]++
+
+            if (quantidadeDeCliques[this.dataset.id] >= quantidadeDeCliques[maisClicado]) {
+                maisClicado = this.dataset.id
+                h2.innerText = `O botão mais clicado foi o ${this.dataset.name}`
+                h3.innerText = `Ele teve ${quantidadeDeCliques[this.dataset.id]} cliques`
+            }
+            
+        })
+    }
+
+    </script>
+    
+</body>
+</html>
